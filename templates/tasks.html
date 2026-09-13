@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Задачи</title>
+    <style>
+        body {
+            background: #1A1A1A;
+            color: #F5F5F5;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 4px;
+        }
+        h1 {
+            font-size: 18px;
+        }
+        .delete_u , .change_p {
+            color: #A8E4A0;
+            text-decoration: none;
+        }
+        .delete_u:hover , .change_p:hover {
+            color: #F5F5F5;
+        }
+        ul {
+            background: #1A1A1A;
+            border: 1px solid #A8E4A0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            list-style: none;
+        }
+        li {
+            font-size: 18px;
+            color: #A8E4A0;
+            float: left;
+            margin: 10px;
+            padding: 7px;
+        }
+        li a {
+            color: #A8E4A0;
+            text-decoration: none;
+        }
+        li a:hover {
+            color: #F5F5F5;
+        }
+        .delete_t {
+            color: #A8E4A0;
+            text-decoration: none;
+        }
+        .delete_t:hover {
+            color: #F5F5F5;
+        }
+        .task {
+            border: 1px solid #A8E4A0;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% if len_login <= 24 %}
+    <li>Профиль: {{login}}</li>
+    {% else %}
+    <li>Профиль: {{login[:24]}}...</li>
+    {% endif %}
+    <li><a href="/tasks?login={{login}}">Задачи</a></li>
+    <li><a href="/add_task?login={{login}}">Добавить задачу</a></li>
+    <li><a href="/exit?login={{login}}">Выйти</a></li>
+</ul>
+<h1>{{login}} | <a class="delete_u" href="/delete_user?login={{login}}">Удалить профиль</a> | <a class="change_p" href="/new_password?login={{login}}">Изменить пароль</a></h1>
+{% if tasks  %}
+<h1>Задачи:</h1>
+{% for i in tasks %}
+<p class="task">Название: {{i.name}}; Дата и время: {{i.date}} | <a class="delete_t" href="/delete_task?id={{i.id}}">Удалить</a></p>
+{% endfor %}
+{% else %}
+<h1>Задачи отсутсвуют</h1>
+{% endif %}
+</body>
+</html>

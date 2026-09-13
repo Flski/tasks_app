@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Удалить профиль</title>
+    <style>
+        body {
+            color: #F5F5F5;
+            background: #1A1A1A;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 4px;
+        }
+        ul {
+            background: #1A1A1A;
+            border: 1px solid #A8E4A0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            list-style: none;
+        }
+        li {
+            font-size: 18px;
+            color: #A8E4A0;
+            float: left;
+            margin: 10px;
+            padding: 7px;
+        }
+        li a {
+            color: #A8E4A0;
+            text-decoration: none;
+        }
+        li a:hover {
+            color: #F5F5F5;
+        }
+        form {
+            text-align: center;
+        }
+        .password , .button {
+            font-family: Arial;
+            color: #1A1A1A;
+            background: #F5F5F5;
+            font-size: 14px;
+        }
+        h1 {
+        font-size: 18px;
+        }
+        .error_du {
+            border: 1px solid #A8E4A0;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% if len_login <= 24 %}
+    <li>Профиль: {{login}}</li>
+    {% else %}
+    <li>Профиль: {{login[:24]}}...</li>
+    {% endif %}
+    <li><a href="/tasks?login={{login}}">Задачи</a></li>
+    <li><a href="/add_task?login={{login}}">Добавить задачу</a></li>
+    <li><a href="/exit?login={{login}}">Выйти</a></li>
+</ul>
+<form action="/delete_user?login={{login}}" method="post">
+    <h1>Подтверждение для удаления профиля</h1>
+    {% if error_du != False %}
+    <p class="error_du">{{error_du}}</p>
+    {% endif %}
+    <p><label>Пароль: </label><input class="password" type="password" name="password_" value="" required></p>
+    <p><input class="button" type="submit" value="Удалить профиль"></p>
+</form>
+</body>
+</html>

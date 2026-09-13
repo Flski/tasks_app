@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Добавить задачу</title>
+    <style>
+        body {
+            background: #1A1A1A;
+            color: #F5F5F5;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 4px;
+        }
+        ul {
+            background: #1A1A1A;
+            border: 1px solid #A8E4A0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            list-style: none;
+        }
+        li {
+            font-size: 18px;
+            color: #A8E4A0;
+            margin: 10px;
+            padding: 7px;
+            float: left;
+        }
+        li a {
+            text-decoration: none;
+            color: #A8E4A0;
+        }
+        li a:hover {
+            color: #F5F5F5;
+        }
+        h1 {
+            font-size: 18px;
+        }
+        .name , .button {
+            color: #1A1A1A;
+            background: #F5F5F5;
+            font-family: Arial;
+            font-size: 14px;
+        }
+        form {
+            text-align: center;
+        }
+        .error_at {
+            border: 1px solid #A8E4A0;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% if len_login <= 24 %}
+    <li>Профиль: {{login}}</li>
+    {% else %}
+    <li>Профиль: {{login[:24]}}...</li>
+    {% endif %}
+    <li><a href="/tasks?login={{login}}">Задачи</a></li>
+    <li><a href="/add_task?login={{login}}">Добавить задачу</a></li>
+    <li><a href="/exit?login={{login}}">Выйти</a></li>
+</ul>
+<form action="/add_task?login={{login}}" method="post">
+    <h1>Добавить задачу</h1>
+    {% if error_at != False %}
+    <p class="error_at">{{error_at}}</p>
+    {% endif %}
+    <p><label>Название: </label><input class="name" type="text" value="" name="name_" required></p>
+    <p><input class="button" type="submit" value="Добавить"></p>
+</form>
+</body>
+</html>
