@@ -1,6 +1,6 @@
 Веб-приложение для управления задачами на фреймворке FastAPI.
 Для запуска на локальном сервере:
 1)В терминале (в директории с main.py) ввести две команды:
-python -m -r requirements.txt
+python -m pip install -r requirements.txt
 python -m uvicorn main:app --host="0.0.0.0" --port=7000
 2)В браузере ввести: http://127.0.0.1:7000
