@@ -7,5 +7,5 @@ database_file_path = "sqlite:///" + os.path.join(directory_path, "database_file.
 
 templates_path = os.path.join(directory_path, "templates")
 
-secret_key = "15d40f4e36ee46dc47ca8f7fed026053701c45d2a7e21bea4d164c9e99aa5e44cbb79f2128f7a9d48dbd75fe2d4b2f0b2a0" \
-"7c48c8e4a8627fae557fbb840cd24dcfa4f7b806c81d885523529361e465ef5dd3d94c48db99c0a4b7d0587f7131c59168a505342fbb1ce"
+secret_key = "f15b70b81d3219216854b3f165229867ee5742c2d88ca580eda8351cfa647150d1c4178025eabc"
+"83f9519d4b845ae1d8fe4f9f847833990b37f9895070b5b580da5e44f277b9"

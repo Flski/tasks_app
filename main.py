@@ -3,6 +3,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
 from starlette.middleware.sessions import SessionMiddleware
 from sqlalchemy.orm import Session
+import uvicorn
 from db_config import engine, db_session
 from db_tables import DB
 from config import templates_path, secret_key
@@ -198,3 +199,6 @@ def new_password_post(request: Request, login: str, db: Session=Depends(get_db),
             return RedirectResponse(url=f"/new_password?login={request.session['login']}", status_code=303)
     request.session["error_np"] = "Пароль должен быть от 8 символов, новый пароль не должен совпадать со старым"
     return RedirectResponse(url=f"/new_password?login={request.session['login']}", status_code=303)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=7000)
